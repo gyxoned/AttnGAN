@@ -26,7 +26,6 @@ def gen_example(wordtoix, algo, sent):
     from nltk.tokenize import RegexpTokenizer
     captions = []
     cap_lens = []
-    # for sent in sentences:
     if len(sent) == 0:
         return 0
     sent = sent.replace("\ufffd\ufffd", " ")
@@ -58,7 +57,7 @@ def gen_example(wordtoix, algo, sent):
     return 1
 
 
-def generate_imgs(cfg_file):
+def init_models(cfg_file):
     cfg_from_file(cfg_file)
 
     manualSeed = 85

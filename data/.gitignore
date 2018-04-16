@@ -1,2 +1,3 @@
 *
 !.gitignore
+!*/birds/word2ix.json
