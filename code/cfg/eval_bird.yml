@@ -6,8 +6,12 @@ GPU_ID: 0
 WORKERS: 1
 
 B_VALIDATION: False  # True  # False
-OUTPUT_NUM: 20
 SELECTED_INDEX: [4,7,9,11,12,17]
+OUTPUT_NUM: 20
+
+# For fixed noise
+# FIX_NOISE: True
+
 TREE:
     BRANCH_NUM: 3
 

@@ -22,6 +22,7 @@ __C.B_VALIDATION = False
 __C.OUTPUT_NUM = 1
 __C.SELECTED_INDEX = [0]
 __C.SAVE_DIR = 'static/results'
+__C.FIX_NOISE = False
 
 __C.TREE = edict()
 __C.TREE.BRANCH_NUM = 3

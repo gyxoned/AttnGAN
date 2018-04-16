@@ -1,4 +1,4 @@
-# AttnGAN (Version for demo)
+# AttnGAN (Version for web demo)
 
 ### Dependencies
 python 2.7

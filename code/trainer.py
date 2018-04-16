@@ -76,6 +76,11 @@ class condGANTrainer(object):
             words_embs, sent_emb = self.text_encoder(captions, cap_lens, hidden)
             mask = (captions == 0)
 
+            if not cfg.FIX_NOISE:
+                self.noise = Variable(torch.FloatTensor(cfg.OUTPUT_NUM, cfg.GAN.Z_DIM), volatile=True)
+                self.noise = self.noise.cuda()
+                self.noise.data.normal_(0, 1)
+
             fake_imgs, attention_maps, _, _ = self.netG(self.noise, sent_emb, words_embs, mask)
             # G attention
             cap_lens_np = cap_lens.cpu().data.numpy()
