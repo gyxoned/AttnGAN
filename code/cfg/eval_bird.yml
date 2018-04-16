@@ -1,21 +1,23 @@
 CONFIG_NAME: 'attn2'
 
 DATASET_NAME: 'birds'
-DATA_DIR: '../data/birds'
-GPU_ID: 3
+DATA_DIR: 'AttnGAN/data/birds'
+GPU_ID: 0
 WORKERS: 1
 
 B_VALIDATION: False  # True  # False
+OUTPUT_NUM: 20
+SELECTED_INDEX: [4,7,9,11,12,17]
 TREE:
     BRANCH_NUM: 3
 
 
 TRAIN:
     FLAG: False
-    NET_G: '../models/bird_AttnGAN2.pth'
+    NET_G: 'AttnGAN/models/bird_AttnGAN2.pth'
     B_NET_D: False
     BATCH_SIZE: 100
-    NET_E: '../DAMSMencoders/bird/text_encoder200.pth'
+    NET_E: 'AttnGAN/DAMSMencoders/bird/text_encoder200.pth'
 
 
 GAN:

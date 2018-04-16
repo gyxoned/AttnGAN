@@ -19,6 +19,9 @@ __C.WORKERS = 6
 
 __C.RNN_TYPE = 'LSTM'   # 'GRU'
 __C.B_VALIDATION = False
+__C.OUTPUT_NUM = 1
+__C.SELECTED_INDEX = [0]
+__C.SAVE_DIR = 'static/results'
 
 __C.TREE = edict()
 __C.TREE.BRANCH_NUM = 3

@@ -10,7 +10,7 @@ from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 from miscc.config import cfg
 from GlobalAttention import GlobalAttentionGeneral as ATT_NET
-
+import numpy as np
 
 class GLU(nn.Module):
     def __init__(self):
@@ -277,6 +277,15 @@ class CA_NET(nn.Module):
         self.c_dim = cfg.GAN.CONDITION_DIM
         self.fc = nn.Linear(self.t_dim, self.c_dim * 4, bias=True)
         self.relu = GLU()
+        
+        if cfg.CUDA:
+            eps = torch.cuda.FloatTensor(cfg.OUTPUT_NUM,self.c_dim).normal_()
+            indices = torch.LongTensor(cfg.SELECTED_INDEX).cuda()
+        else:
+            eps = torch.FloatTensor(cfg.OUTPUT_NUM,self.c_dim).normal_()
+            indices = torch.LongTensor(cfg.SELECTED_INDEX)
+        eps = torch.index_select(eps,0,indices)
+        self.eps=eps
 
     def encode(self, text_embedding):
         x = self.relu(self.fc(text_embedding))
@@ -286,11 +295,7 @@ class CA_NET(nn.Module):
 
     def reparametrize(self, mu, logvar):
         std = logvar.mul(0.5).exp_()
-        if cfg.CUDA:
-            eps = torch.cuda.FloatTensor(std.size()).normal_()
-        else:
-            eps = torch.FloatTensor(std.size()).normal_()
-        eps = Variable(eps)
+        eps = Variable(self.eps)
         return eps.mul(std).add_(mu)
 
     def forward(self, text_embedding):
